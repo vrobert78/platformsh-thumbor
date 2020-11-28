@@ -12,11 +12,19 @@ type: "python:2.7"
 ## The hooks executed at various points in the lifecycle of the application.
 hooks:
     build: |
+      pip install setuptools --upgrade
       pip install -r requirements.txt
+
       export AUTO_PNG_TO_JPG=True
       export AUTO_WEBP=True
-      export UPLOAD_ENABLED=True
-      export LOADER='thumbor.loaders.file_loader'
+      export UPLOAD_ENABLED=False
+      export LOADER='thumbor.loaders.http_loader'
+      export DETECTORS=[\'thumbor.detectors.face_detector\',\'thumbor.detectors.feature_detector\']
+      export THUMBOR_NUM_PROCESSES=8
+
+      envtpl /app/etc/circus.ini.tpl  --allow-missing --keep-template
+      envtpl /app/etc/circus.d/thumbor-circus.ini.tpl  --allow-missing --keep-template
+
       if [ ! -f /app/thumbor.conf ]; then
         envtpl /app/thumbor.conf.tpl  --allow-missing --keep-template
       fi
@@ -35,7 +43,18 @@ disk: 1024
 # The configuration of app when it is exposed to the web.
 web:
     commands:
-        start: python -m thumbor/server --conf=/app/thumbor.conf
+        start: circusd /app/etc/circus.ini
+    locations:
+        '/':
+            passthru: true
+            allow: false
+        '/test':
+            root: 'public'
+            index: ['index.html']
+            scripts: false
+            allow: true
+
+
 
 mounts:
     '/data/result_storage':
