@@ -45,14 +45,13 @@ web:
     commands:
         start: circusd /app/etc/circus.ini
     locations:
-        '/':
+        '/unsafe':
             passthru: true
-            allow: false
-        '/test':
+
+        '/':
             root: 'public'
             index: ['index.html']
             scripts: false
-            allow: true
 
 
 

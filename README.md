@@ -6,8 +6,10 @@ This project provides a starter kit for Thumbor projects hosted on Platform.sh.
 
 Thumbor documentation: https://thumbor.readthedocs.io/en/latest/index.html
 
-Some transformation examples are available in `/test/index.html` page.
+Some transformation examples are available in the root page `/`.
 
 This template is largely inspired by https://github.com/MinimalCompact/thumbor .
 
 Thumbor configuration can be changed using env variables, please see the build hook in [.platform.app.yaml](.platform.app.yaml)
+
+**SECURITY** This template authorizes unsafe calls, please be sure to follow the [security guide](https://thumbor.readthedocs.io/en/latest/security.html) in production.
