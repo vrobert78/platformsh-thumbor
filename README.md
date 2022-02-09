@@ -1,6 +1,6 @@
 # Thumbor template for Platform.sh
 
-<p align="center"><a href="https://console.platform.sh/projects/create-project/?template=https://github.com/vrobert78/platformsh-thumbor.git" target="_blank" title="Deploy with Platform.sh"><img src="https://platform.sh/images/deploy/deploy-button-lg-blue.svg"></a></p>
+<p align="center"><a href="https://console.platform.sh/projects/create-project/?template=https://github.com/vrobert78/platformsh-thumbor/blob/master/template-definition.yaml" target="_blank" title="Deploy with Platform.sh"><img src="https://platform.sh/images/deploy/deploy-button-lg-blue.svg"></a></p>
 
 This project provides a starter kit for Thumbor projects hosted on Platform.sh.
 
