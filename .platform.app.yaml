@@ -12,6 +12,7 @@ type: "python:2.7"
 ## The hooks executed at various points in the lifecycle of the application.
 hooks:
     build: |
+      pip install --upgrade pip
       pip install setuptools --upgrade
       pip install -r requirements.txt
 
